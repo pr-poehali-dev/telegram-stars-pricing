@@ -258,7 +258,7 @@ const Index = () => {
                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center mx-auto mb-4">
                   <Icon name="Lock" className="text-white" size={40} />
                 </div>
-                <CardTitle className="text-3xl md:text-4xl">Приватный раздел</CardTitle>
+                <CardTitle className="text-3xl md:text-4xl">Приватный ТГК</CardTitle>
                 <CardDescription className="text-lg">
                   Эксклюзивные предложения для постоянных клиентов
                 </CardDescription>
