@@ -262,6 +262,10 @@ const Index = () => {
                 <CardDescription className="text-lg">
                   Эксклюзивные предложения для постоянных клиентов
                 </CardDescription>
+                <div className="mt-4">
+                  <span className="text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">399₽</span>
+                  <span className="text-muted-foreground ml-2">/ месяц</span>
+                </div>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
