@@ -172,12 +172,15 @@ const Index = () => {
                 </div>
                 
                 <div className="pt-4 border-t border-border/30">
-                  <Button className="w-full bg-gradient-to-r from-primary to-secondary text-lg py-6 hover:scale-105 transition-transform">
-                    <Icon name="Unlock" className="mr-2" />
-                    Получить доступ
+                  <Button 
+                    className="w-full bg-gradient-to-r from-primary to-secondary text-lg py-6 hover:scale-105 transition-transform"
+                    onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
+                  >
+                    <Icon name="CreditCard" className="mr-2" />
+                    Оплатить 399₽
                   </Button>
                   <p className="text-center text-sm text-muted-foreground mt-3">
-                    Для оформления VIP статуса свяжитесь с нами
+                    После оплаты вы получите доступ навсегда
                   </p>
                 </div>
               </CardContent>
