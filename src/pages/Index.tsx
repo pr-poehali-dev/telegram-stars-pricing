@@ -9,6 +9,15 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 
 const Index = () => {
   const [selectedService, setSelectedService] = useState<string | null>(null);
+  const [showPricing, setShowPricing] = useState(false);
+
+  const phonePrices = [
+    { code: '+880', country: 'Бангладеш', price: '165₽', flag: '🇧🇩' },
+    { code: '+1', country: 'США/Канада', price: '100₽', flag: '🇺🇸' },
+    { code: '+57', country: 'Колумбия', price: '105₽', flag: '🇨🇴' },
+    { code: '+63', country: 'Филиппины', price: '60₽', flag: '🇵🇭' },
+    { code: '+254', country: 'Кения', price: '60₽', flag: '🇰🇪' },
+  ];
 
   const services = [
     {
@@ -118,10 +127,52 @@ const Index = () => {
                 Быстро, безопасно, выгодно.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                <Button size="lg" className="bg-gradient-to-r from-primary to-secondary text-lg px-8 py-6 hover:scale-105 transition-transform">
-                  <Icon name="ShoppingCart" className="mr-2" />
-                  Начать покупку
-                </Button>
+                <Dialog open={showPricing} onOpenChange={setShowPricing}>
+                  <DialogTrigger asChild>
+                    <Button size="lg" className="bg-gradient-to-r from-primary to-secondary text-lg px-8 py-6 hover:scale-105 transition-transform">
+                      <Icon name="ShoppingCart" className="mr-2" />
+                      Начать покупку
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="bg-card border-border/50 max-w-2xl">
+                    <DialogHeader>
+                      <DialogTitle className="text-2xl">Прайс номеров для регистрации</DialogTitle>
+                      <DialogDescription>
+                        Выберите страну для получения номера
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="space-y-3 pt-4 max-h-[60vh] overflow-y-auto">
+                      {phonePrices.map((item, index) => (
+                        <div 
+                          key={index}
+                          className="flex items-center justify-between p-4 rounded-lg border border-border/50 hover:border-primary/50 transition-all bg-card/50 hover:bg-primary/5 cursor-pointer"
+                          onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
+                        >
+                          <div className="flex items-center gap-3">
+                            <span className="text-3xl">{item.flag}</span>
+                            <div>
+                              <p className="font-semibold text-lg">{item.code}</p>
+                              <p className="text-sm text-muted-foreground">{item.country}</p>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-2xl font-bold text-primary">{item.price}</p>
+                            <p className="text-xs text-muted-foreground">за номер</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="pt-4 border-t border-border/30">
+                      <Button 
+                        className="w-full bg-gradient-to-r from-primary to-secondary"
+                        onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
+                      >
+                        <Icon name="Send" className="mr-2" />
+                        Заказать в Telegram
+                      </Button>
+                    </div>
+                  </DialogContent>
+                </Dialog>
                 <Button size="lg" variant="outline" className="border-2 text-lg px-8 py-6 hover:scale-105 transition-transform">
                   <Icon name="MessageCircle" className="mr-2" />
                   Консультация
