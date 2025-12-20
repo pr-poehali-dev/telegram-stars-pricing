@@ -171,16 +171,24 @@ const Index = () => {
                   </div>
                 </div>
                 
-                <div className="pt-4 border-t border-border/30">
+                <div className="pt-4 border-t border-border/30 space-y-4">
+                  <div className="p-4 rounded-lg bg-primary/10 border border-primary/30">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm font-medium text-muted-foreground">Т-Банк</span>
+                      <Icon name="CreditCard" className="text-primary" size={20} />
+                    </div>
+                    <p className="text-2xl font-bold font-mono tracking-wider">2200 7020 7152 2895</p>
+                  </div>
+                  
                   <Button 
                     className="w-full bg-gradient-to-r from-primary to-secondary text-lg py-6 hover:scale-105 transition-transform"
                     onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
                   >
-                    <Icon name="CreditCard" className="mr-2" />
-                    Оплатить 399₽
+                    <Icon name="Send" className="mr-2" />
+                    Подтвердить оплату
                   </Button>
-                  <p className="text-center text-sm text-muted-foreground mt-3">
-                    После оплаты вы получите доступ навсегда
+                  <p className="text-center text-sm text-muted-foreground">
+                    Переведите 399₽ и напишите в Telegram для получения доступа
                   </p>
                 </div>
               </CardContent>
