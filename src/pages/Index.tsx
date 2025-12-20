@@ -264,7 +264,7 @@ const Index = () => {
                 </CardDescription>
                 <div className="mt-4">
                   <span className="text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">399₽</span>
-                  <span className="text-muted-foreground ml-2">/ месяц</span>
+                  <span className="text-muted-foreground ml-2">навсегда</span>
                 </div>
               </CardHeader>
               <CardContent className="space-y-6">
