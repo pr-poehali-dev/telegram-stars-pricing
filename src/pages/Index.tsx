@@ -104,10 +104,10 @@ const Index = () => {
                 Надёжный сервис с 2020 года
               </Badge>
               <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-                Заработай на
+                Зарабатывай на
                 <br />
                 <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-glow">
-                  Telegram Stars
+                  FunPay
                 </span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
