@@ -226,6 +226,91 @@ const Index = () => {
           </div>
         </section>
 
+        <section id="services" className="py-20 px-4 bg-card/30 backdrop-blur-sm">
+          <div className="container mx-auto max-w-6xl">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">Наши услуги</h2>
+              <p className="text-muted-foreground text-lg">Выбери что тебе нужно для роста</p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              <Card className="border-2 border-border/50 hover:border-primary/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20 bg-card/80 backdrop-blur-sm">
+                <CardHeader>
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-4">
+                    <Icon name="Star" className="text-white" size={32} />
+                  </div>
+                  <CardTitle className="text-2xl">Звёзды Telegram</CardTitle>
+                  <CardDescription className="text-base">Официальная валюта для донатов и премиум-функций</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  {starsPrices.map((item, index) => (
+                    <div 
+                      key={index}
+                      className={`flex items-center justify-between p-3 rounded-lg border transition-all cursor-pointer ${
+                        item.popular 
+                          ? 'border-primary bg-primary/10 hover:bg-primary/15' 
+                          : 'border-border/50 hover:border-primary/50 bg-card/50 hover:bg-primary/5'
+                      }`}
+                      onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-2xl">{item.icon}</span>
+                        <p className="font-semibold">{item.amount} звёзд</p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <p className="text-xl font-bold text-primary">{item.price}</p>
+                        {item.popular && (
+                          <Badge className="bg-accent text-white text-xs">Хит</Badge>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                  <Button 
+                    className="w-full mt-4 bg-gradient-to-r from-primary to-accent hover:opacity-90"
+                    onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
+                  >
+                    Купить звёзды
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="border-2 border-border/50 hover:border-primary/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20 bg-card/80 backdrop-blur-sm">
+                <CardHeader>
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-secondary to-primary flex items-center justify-center mb-4">
+                    <Icon name="Phone" className="text-white" size={32} />
+                  </div>
+                  <CardTitle className="text-2xl">Номера для регистрации</CardTitle>
+                  <CardDescription className="text-base">Виртуальные номера для активации аккаунтов</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  {phonePrices.map((item, index) => (
+                    <div 
+                      key={index}
+                      className="flex items-center justify-between p-3 rounded-lg border border-border/50 hover:border-primary/50 transition-all bg-card/50 hover:bg-primary/5 cursor-pointer"
+                      onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-2xl">{item.flag}</span>
+                        <div>
+                          <p className="font-semibold">{item.code}</p>
+                          <p className="text-xs text-muted-foreground">{item.country}</p>
+                        </div>
+                      </div>
+                      <p className="text-xl font-bold text-primary">{item.price}</p>
+                    </div>
+                  ))}
+                  <Button 
+                    className="w-full mt-4 bg-gradient-to-r from-secondary to-primary hover:opacity-90"
+                    onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
+                  >
+                    Купить номер
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
         <section id="private" className="py-20 px-4 bg-gradient-to-br from-primary/10 via-accent/5 to-secondary/10 backdrop-blur-sm">
           <div className="container mx-auto max-w-4xl">
             <Card className="border-2 border-primary/30 bg-card/90 backdrop-blur-md shadow-2xl shadow-primary/20">
