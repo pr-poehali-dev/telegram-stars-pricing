@@ -217,7 +217,12 @@ const Index = () => {
                     </div>
                   </DialogContent>
                 </Dialog>
-                <Button size="lg" variant="outline" className="border-2 text-lg px-8 py-6 hover:scale-105 transition-transform">
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-2 text-lg px-8 py-6 hover:scale-105 transition-transform"
+                  onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
+                >
                   <Icon name="MessageCircle" className="mr-2" />
                   Консультация
                 </Button>
