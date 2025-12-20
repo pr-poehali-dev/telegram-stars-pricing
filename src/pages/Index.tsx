@@ -89,7 +89,10 @@ const Index = () => {
               <a href="#services" className="text-muted-foreground hover:text-foreground transition-colors">Услуги</a>
               <a href="#reviews" className="text-muted-foreground hover:text-foreground transition-colors">Отзывы</a>
               <a href="#private" className="text-muted-foreground hover:text-foreground transition-colors">Приват</a>
-              <Button className="bg-gradient-to-r from-primary to-secondary hover:opacity-90">
+              <Button 
+                className="bg-gradient-to-r from-primary to-secondary hover:opacity-90"
+                onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
+              >
                 Связаться
               </Button>
             </nav>
