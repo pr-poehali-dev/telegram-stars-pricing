@@ -130,10 +130,6 @@ const Index = () => {
 
         <section id="services" className="py-20 px-4 bg-card/30 backdrop-blur-sm">
           <div className="container mx-auto max-w-6xl">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Наши услуги</h2>
-              <p className="text-muted-foreground text-lg">Выбери что тебе нужно для роста</p>
-            </div>
             
             <div className="grid md:grid-cols-3 gap-8">
               {services.map((service, index) => (
