@@ -19,6 +19,16 @@ const Index = () => {
     { code: '+254', country: 'Кения', price: '60₽', flag: '🇰🇪' },
   ];
 
+  const starsPrices = [
+    { amount: '50', price: '80₽', icon: '⭐' },
+    { amount: '75', price: '120₽', icon: '⭐' },
+    { amount: '100', price: '160₽', icon: '⭐', popular: true },
+    { amount: '150', price: '235₽', icon: '⭐' },
+    { amount: '250', price: '390₽', icon: '⭐' },
+    { amount: '350', price: '350₽', icon: '⭐' },
+    { amount: '500', price: '780₽', icon: '⭐', popular: true },
+  ];
+
   const services = [
     {
       id: 'stars',
@@ -134,34 +144,68 @@ const Index = () => {
                       Начать покупку
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="bg-card border-border/50 max-w-2xl">
+                  <DialogContent className="bg-card border-border/50 max-w-3xl">
                     <DialogHeader>
-                      <DialogTitle className="text-2xl">Прайс номеров для регистрации</DialogTitle>
+                      <DialogTitle className="text-2xl">Выберите что хотите купить</DialogTitle>
                       <DialogDescription>
-                        Выберите страну для получения номера
+                        Звёзды Telegram или номера для регистрации
                       </DialogDescription>
                     </DialogHeader>
-                    <div className="space-y-3 pt-4 max-h-[60vh] overflow-y-auto">
-                      {phonePrices.map((item, index) => (
-                        <div 
-                          key={index}
-                          className="flex items-center justify-between p-4 rounded-lg border border-border/50 hover:border-primary/50 transition-all bg-card/50 hover:bg-primary/5 cursor-pointer"
-                          onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
-                        >
-                          <div className="flex items-center gap-3">
-                            <span className="text-3xl">{item.flag}</span>
-                            <div>
-                              <p className="font-semibold text-lg">{item.code}</p>
-                              <p className="text-sm text-muted-foreground">{item.country}</p>
+                    
+                    <div className="grid md:grid-cols-2 gap-6 pt-4 max-h-[70vh] overflow-y-auto">
+                      <div className="space-y-3">
+                        <h3 className="font-semibold text-lg flex items-center gap-2">
+                          <Icon name="Star" className="text-accent" size={20} />
+                          Звёзды Telegram
+                        </h3>
+                        {starsPrices.map((item, index) => (
+                          <div 
+                            key={index}
+                            className={`flex items-center justify-between p-3 rounded-lg border transition-all cursor-pointer ${
+                              item.popular 
+                                ? 'border-primary bg-primary/10 hover:bg-primary/15' 
+                                : 'border-border/50 hover:border-primary/50 bg-card/50 hover:bg-primary/5'
+                            }`}
+                            onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
+                          >
+                            <div className="flex items-center gap-2">
+                              <span className="text-2xl">{item.icon}</span>
+                              <p className="font-semibold">{item.amount} звёзд</p>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <p className="text-xl font-bold text-primary">{item.price}</p>
+                              {item.popular && (
+                                <Badge className="bg-accent text-white text-xs">Хит</Badge>
+                              )}
                             </div>
                           </div>
-                          <div className="text-right">
-                            <p className="text-2xl font-bold text-primary">{item.price}</p>
-                            <p className="text-xs text-muted-foreground">за номер</p>
+                        ))}
+                      </div>
+
+                      <div className="space-y-3">
+                        <h3 className="font-semibold text-lg flex items-center gap-2">
+                          <Icon name="Phone" className="text-secondary" size={20} />
+                          Номера для регистрации
+                        </h3>
+                        {phonePrices.map((item, index) => (
+                          <div 
+                            key={index}
+                            className="flex items-center justify-between p-3 rounded-lg border border-border/50 hover:border-primary/50 transition-all bg-card/50 hover:bg-primary/5 cursor-pointer"
+                            onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
+                          >
+                            <div className="flex items-center gap-2">
+                              <span className="text-2xl">{item.flag}</span>
+                              <div>
+                                <p className="font-semibold">{item.code}</p>
+                                <p className="text-xs text-muted-foreground">{item.country}</p>
+                              </div>
+                            </div>
+                            <p className="text-xl font-bold text-primary">{item.price}</p>
                           </div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
+
                     <div className="pt-4 border-t border-border/30">
                       <Button 
                         className="w-full bg-gradient-to-r from-primary to-secondary"
