@@ -445,6 +445,81 @@ const Index = () => {
           </div>
         </section>
 
+        <section id="funpay" className="py-20 px-4">
+          <div className="container mx-auto max-w-4xl">
+            <Card className="border-2 border-secondary/30 bg-card/90 backdrop-blur-md shadow-2xl shadow-secondary/20">
+              <CardHeader className="text-center">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-secondary to-accent flex items-center justify-center mx-auto mb-4">
+                  <Icon name="Bot" className="text-white" size={40} />
+                </div>
+                <CardTitle className="text-3xl md:text-4xl">FunPayCardinal</CardTitle>
+                <CardDescription className="text-lg">
+                  Автоматизация FunPay — всегда онлайн, лоты на топе
+                </CardDescription>
+                <div className="mt-4">
+                  <span className="text-5xl font-bold bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">549₽</span>
+                  <span className="text-muted-foreground ml-2">навсегда</span>
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="p-6 rounded-lg bg-gradient-to-br from-secondary/10 to-accent/10 border border-secondary/30">
+                  <h3 className="font-semibold text-lg mb-4 text-center">Что получишь:</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                        <Icon name="Zap" className="text-secondary" size={16} />
+                      </div>
+                      <div>
+                        <p className="font-medium">Автоподнятие лотов</p>
+                        <p className="text-sm text-muted-foreground">Оставь комп включённым — бот сам будет поднимать твои лоты каждый час</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-1">
+                        <Icon name="Clock" className="text-accent" size={16} />
+                      </div>
+                      <div>
+                        <p className="font-medium">Всегда онлайн</p>
+                        <p className="text-sm text-muted-foreground">Статус "В сети" 24/7 — клиенты видят, что ты доступен</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                        <Icon name="Settings" className="text-primary" size={16} />
+                      </div>
+                      <div>
+                        <p className="font-medium">Автовыдача товаров</p>
+                        <p className="text-sm text-muted-foreground">Настрой автоматическую выдачу — продажи идут без твоего участия</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                        <Icon name="TrendingUp" className="text-secondary" size={16} />
+                      </div>
+                      <div>
+                        <p className="font-medium">Больше продаж</p>
+                        <p className="text-sm text-muted-foreground">Твои лоты всегда на первых позициях = больше просмотров и заказов</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <Button 
+                  className="w-full bg-gradient-to-r from-secondary to-accent text-lg py-6 hover:scale-105 transition-transform"
+                  onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
+                >
+                  <Icon name="ShoppingCart" className="mr-2" />
+                  Купить FunPayCardinal
+                </Button>
+                
+                <p className="text-center text-sm text-muted-foreground">
+                  После оплаты получишь инструкцию по настройке бота
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
         <footer className="py-12 px-4 border-t border-border/50 bg-card/30 backdrop-blur-sm">
           <div className="container mx-auto max-w-6xl">
             <div className="grid md:grid-cols-3 gap-8 mb-8">
