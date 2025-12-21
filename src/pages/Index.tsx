@@ -12,21 +12,21 @@ const Index = () => {
   const [showPricing, setShowPricing] = useState(false);
 
   const phonePrices = [
-    { code: '+880', country: 'Бангладеш', price: '165₽', flag: '🇧🇩' },
-    { code: '+1', country: 'США/Канада', price: '100₽', flag: '🇺🇸' },
-    { code: '+57', country: 'Колумбия', price: '105₽', flag: '🇨🇴' },
-    { code: '+63', country: 'Филиппины', price: '60₽', flag: '🇵🇭' },
-    { code: '+254', country: 'Кения', price: '60₽', flag: '🇰🇪' },
+    { code: '+880', country: 'Бангладеш', price: '165₽', flag: '🇧🇩', url: 'https://t.me/zxcvuier' },
+    { code: '+1', country: 'США/Канада', price: '100₽', flag: '🇺🇸', url: 'https://t.me/zxcvuier' },
+    { code: '+57', country: 'Колумбия', price: '105₽', flag: '🇨🇴', url: 'https://t.me/zxcvuier' },
+    { code: '+63', country: 'Филиппины', price: '60₽', flag: '🇵🇭', url: 'https://t.me/zxcvuier' },
+    { code: '+254', country: 'Кения', price: '60₽', flag: '🇰🇪', url: 'https://t.me/zxcvuier' },
   ];
 
   const starsPrices = [
-    { amount: '50', price: '80₽', icon: '⭐' },
-    { amount: '75', price: '120₽', icon: '⭐' },
-    { amount: '100', price: '160₽', icon: '⭐', popular: true },
-    { amount: '150', price: '235₽', icon: '⭐' },
-    { amount: '250', price: '390₽', icon: '⭐' },
-    { amount: '350', price: '350₽', icon: '⭐' },
-    { amount: '500', price: '780₽', icon: '⭐', popular: true },
+    { amount: '50', price: '80₽', icon: '⭐', url: 'https://t.me/zxcvuier' },
+    { amount: '75', price: '120₽', icon: '⭐', url: 'https://t.me/zxcvuier' },
+    { amount: '100', price: '160₽', icon: '⭐', popular: true, url: 'https://t.me/zxcvuier' },
+    { amount: '150', price: '235₽', icon: '⭐', url: 'https://t.me/zxcvuier' },
+    { amount: '250', price: '390₽', icon: '⭐', url: 'https://t.me/zxcvuier' },
+    { amount: '350', price: '350₽', icon: '⭐', url: 'https://t.me/zxcvuier' },
+    { amount: '500', price: '780₽', icon: '⭐', popular: true, url: 'https://t.me/zxcvuier' },
   ];
 
   const services = [
@@ -275,31 +275,28 @@ const Index = () => {
                   {starsPrices.map((item, index) => (
                     <div 
                       key={index}
-                      className={`flex items-center justify-between p-3 rounded-lg border transition-all cursor-pointer ${
+                      className={`flex items-center justify-between p-3 rounded-lg border transition-all ${
                         item.popular 
-                          ? 'border-primary bg-primary/10 hover:bg-primary/15' 
-                          : 'border-border/50 hover:border-primary/50 bg-card/50 hover:bg-primary/5'
+                          ? 'border-primary bg-primary/10' 
+                          : 'border-border/50 bg-card/50'
                       }`}
-                      onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
                     >
                       <div className="flex items-center gap-2">
                         <span className="text-2xl">{item.icon}</span>
                         <p className="font-semibold">{item.amount} звёзд</p>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <p className="text-xl font-bold text-primary">{item.price}</p>
                         {item.popular && (
                           <Badge className="bg-accent text-white text-xs">Хит</Badge>
                         )}
                       </div>
+                      <Button 
+                        size="sm"
+                        className="bg-gradient-to-r from-primary to-accent"
+                        onClick={() => window.open(item.url, '_blank')}
+                      >
+                        {item.price}
+                      </Button>
                     </div>
                   ))}
-                  <Button 
-                    className="w-full mt-4 bg-gradient-to-r from-primary to-accent hover:opacity-90"
-                    onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
-                  >
-                    Купить звёзды
-                  </Button>
                 </CardContent>
               </Card>
 
@@ -315,8 +312,7 @@ const Index = () => {
                   {phonePrices.map((item, index) => (
                     <div 
                       key={index}
-                      className="flex items-center justify-between p-3 rounded-lg border border-border/50 hover:border-primary/50 transition-all bg-card/50 hover:bg-primary/5 cursor-pointer"
-                      onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
+                      className="flex items-center justify-between p-3 rounded-lg border border-border/50 bg-card/50"
                     >
                       <div className="flex items-center gap-2">
                         <span className="text-2xl">{item.flag}</span>
@@ -325,15 +321,15 @@ const Index = () => {
                           <p className="text-xs text-muted-foreground">{item.country}</p>
                         </div>
                       </div>
-                      <p className="text-xl font-bold text-primary">{item.price}</p>
+                      <Button 
+                        size="sm"
+                        className="bg-gradient-to-r from-secondary to-primary"
+                        onClick={() => window.open(item.url, '_blank')}
+                      >
+                        {item.price}
+                      </Button>
                     </div>
                   ))}
-                  <Button 
-                    className="w-full mt-4 bg-gradient-to-r from-secondary to-primary hover:opacity-90"
-                    onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
-                  >
-                    Купить номер
-                  </Button>
                 </CardContent>
               </Card>
             </div>
@@ -452,10 +448,16 @@ const Index = () => {
                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-secondary to-accent flex items-center justify-center mx-auto mb-4">
                   <Icon name="Bot" className="text-white" size={40} />
                 </div>
-                <CardTitle className="text-3xl md:text-4xl">FunPayCardinal</CardTitle>
-                <CardDescription className="text-lg">
-                  Автоматизация FunPay — всегда онлайн, лоты на топе
-                </CardDescription>
+                <div className="flex items-center justify-center gap-4 mb-4">
+                  <Icon name="Send" className="text-primary" size={32} />
+                  <div className="text-center">
+                    <CardTitle className="text-3xl md:text-4xl">Зарабатывай на FunPay</CardTitle>
+                    <p className="text-sm text-muted-foreground mt-1">FunPayCardinal — бот для автоматизации</p>
+                  </div>
+                  <svg viewBox="0 0 24 24" className="w-8 h-8 text-secondary" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                  </svg>
+                </div>
                 <div className="mt-4">
                   <span className="text-5xl font-bold bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">549₽</span>
                   <span className="text-muted-foreground ml-2">навсегда</span>
