@@ -242,7 +242,19 @@ const Index = () => {
                       </div>
                     </div>
 
-                    <div className="pt-4 border-t border-border/30">
+                    <div className="pt-4 border-t border-border/30 space-y-3">
+                      <Button 
+                        className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700"
+                        onClick={() => {
+                          window.open('https://www.tinkoff.ru/rm/r_zXjHiwuRWv.pFzEvXqslY/SOLg19362', '_blank');
+                          setTimeout(() => {
+                            window.open('https://t.me/zxcvuier', '_blank');
+                          }, 2000);
+                        }}
+                      >
+                        <Icon name="CreditCard" className="mr-2" />
+                        Оплатить картой Tinkoff
+                      </Button>
                       <Button 
                         className="w-full bg-gradient-to-r from-primary to-secondary"
                         onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
