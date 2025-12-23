@@ -99,6 +99,39 @@ const Index = () => {
                   <div className="grid md:grid-cols-2 gap-6 pt-4">
                     <div className="space-y-3">
                       <h3 className="font-semibold text-lg flex items-center gap-2">
+                        <Icon name="Lock" className="text-purple-500" size={20} />
+                        Приватный канал
+                      </h3>
+                      <div className="p-4 rounded-lg border border-purple-500/50 bg-purple-500/10">
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="flex items-center gap-2">
+                            <span className="text-3xl">🔒</span>
+                            <div>
+                              <p className="font-semibold">Приватный ТГК</p>
+                              <p className="text-xs text-muted-foreground">Навсегда</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <p className="text-xl font-bold text-purple-400">299₽</p>
+                            <Badge className="bg-purple-500 text-white text-xs">Топ</Badge>
+                          </div>
+                        </div>
+                        <Button 
+                          size="sm" 
+                          className="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-xs"
+                          onClick={() => {
+                            navigator.clipboard.writeText('2200702071522895');
+                            window.open('https://t.me/zxcvuier', '_blank');
+                          }}
+                        >
+                          <Icon name="CreditCard" size={14} className="mr-1" />
+                          Оплатить (копировать карту)
+                        </Button>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <h3 className="font-semibold text-lg flex items-center gap-2">
                         <Icon name="Star" className="text-accent" size={20} />
                         Звёзды Telegram
                       </h3>
@@ -140,11 +173,12 @@ const Index = () => {
                       ))}
                     </div>
 
-                    <div className="space-y-3">
+                    <div className="space-y-3 md:col-span-2">
                       <h3 className="font-semibold text-lg flex items-center gap-2">
                         <Icon name="Phone" className="text-secondary" size={20} />
                         Номера для регистрации
                       </h3>
+                      <div className="grid md:grid-cols-2 gap-3">
                       {phonePrices.map((item, index) => (
                         <div 
                           key={index}
@@ -175,6 +209,7 @@ const Index = () => {
                           </Button>
                         </div>
                       ))}
+                      </div>
                     </div>
                   </div>
 
