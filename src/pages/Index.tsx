@@ -259,6 +259,15 @@ const Index = () => {
                 <Icon name="MessageCircle" className="mr-2" />
                 Консультация
               </Button>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-2 text-lg px-8 py-6 hover:scale-105 transition-transform border-purple-500/50 text-purple-400 hover:bg-purple-500/10"
+                onClick={() => window.open('https://t.me/+vv4NJFjiUGJhMGQy', '_blank')}
+              >
+                <Icon name="Star" className="mr-2" />
+                Отзывы
+              </Button>
             </div>
           </div>
         </section>
