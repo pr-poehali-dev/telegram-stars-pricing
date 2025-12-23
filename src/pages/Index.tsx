@@ -30,6 +30,13 @@ const Index = () => {
     { amount: '500', price: '780₽', icon: '⭐', popular: true },
   ];
 
+  const premiumPrices = [
+    { duration: '1 месяц', price: '349₽', icon: '👑' },
+    { duration: '3 месяца', price: '1000₽', icon: '👑', popular: true },
+    { duration: '6 месяцев', price: '1300₽', icon: '👑' },
+    { duration: '12 месяцев', price: '2200₽', icon: '👑', popular: true },
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/10 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.1),transparent_50%)] pointer-events-none" />
@@ -189,6 +196,36 @@ const Index = () => {
                               <p className="text-xl font-bold text-primary">{item.price}</p>
                               {item.popular && (
                                 <Badge className="bg-accent text-white text-xs">Хит</Badge>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="space-y-3">
+                      <h3 className="font-semibold text-lg flex items-center gap-2">
+                        <Icon name="Crown" className="text-blue-500" size={20} />
+                        Telegram Premium
+                      </h3>
+                      {premiumPrices.map((item, index) => (
+                        <div 
+                          key={index}
+                          className={`p-3 rounded-lg border transition-all ${
+                            item.popular 
+                              ? 'border-blue-500 bg-blue-500/10' 
+                              : 'border-border/50 bg-card/50'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center gap-2">
+                              <span className="text-2xl">{item.icon}</span>
+                              <p className="font-semibold">{item.duration}</p>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <p className="text-xl font-bold text-blue-400">{item.price}</p>
+                              {item.popular && (
+                                <Badge className="bg-blue-500 text-white text-xs">Выгодно</Badge>
                               )}
                             </div>
                           </div>
