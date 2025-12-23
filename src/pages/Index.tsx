@@ -128,6 +128,65 @@ const Index = () => {
                           Оплатить (копировать карту)
                         </Button>
                       </div>
+
+                      <div className="mt-3 p-5 rounded-lg border-2 border-orange-500/50 bg-gradient-to-br from-orange-500/10 to-red-500/10">
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center gap-3">
+                            <span className="text-4xl">🤖</span>
+                            <div>
+                              <p className="font-bold text-lg">FunPayCardinal — бот</p>
+                              <p className="text-xs text-muted-foreground">для автоматизации</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <p className="text-2xl font-bold text-orange-400">549₽</p>
+                            <Badge className="bg-orange-500 text-white text-xs">Навсегда</Badge>
+                          </div>
+                        </div>
+                        <div className="space-y-2 mb-3 text-sm">
+                          <p className="font-semibold text-base mb-2">Что получишь:</p>
+                          <div className="flex items-start gap-2">
+                            <Icon name="TrendingUp" size={16} className="text-orange-400 mt-0.5 flex-shrink-0" />
+                            <div>
+                              <p className="font-semibold">Автоподнятие лотов</p>
+                              <p className="text-xs text-muted-foreground">Оставь комп включённым — бот сам будет поднимать твои лоты каждый час</p>
+                            </div>
+                          </div>
+                          <div className="flex items-start gap-2">
+                            <Icon name="Wifi" size={16} className="text-green-400 mt-0.5 flex-shrink-0" />
+                            <div>
+                              <p className="font-semibold">Всегда онлайн</p>
+                              <p className="text-xs text-muted-foreground">Статус "В сети" 24/7 — клиенты видят, что ты доступен</p>
+                            </div>
+                          </div>
+                          <div className="flex items-start gap-2">
+                            <Icon name="PackageCheck" size={16} className="text-blue-400 mt-0.5 flex-shrink-0" />
+                            <div>
+                              <p className="font-semibold">Автовыдача товаров</p>
+                              <p className="text-xs text-muted-foreground">Настрой автоматическую выдачу — продажи идут без твоего участия</p>
+                            </div>
+                          </div>
+                          <div className="flex items-start gap-2">
+                            <Icon name="BadgeDollarSign" size={16} className="text-purple-400 mt-0.5 flex-shrink-0" />
+                            <div>
+                              <p className="font-semibold">Больше продаж</p>
+                              <p className="text-xs text-muted-foreground">Твои лоты всегда на первых позициях = больше просмотров и заказов</p>
+                            </div>
+                          </div>
+                        </div>
+                        <Button 
+                          size="sm" 
+                          className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-sm font-semibold"
+                          onClick={() => {
+                            navigator.clipboard.writeText('2200702071522895');
+                            window.open('https://t.me/zxcvuier', '_blank');
+                          }}
+                        >
+                          <Icon name="ShoppingCart" size={16} className="mr-2" />
+                          Купить FunPayCardinal
+                        </Button>
+                        <p className="text-xs text-center text-muted-foreground mt-2">После оплаты получишь инструкцию по настройке бота</p>
+                      </div>
                     </div>
 
                     <div className="space-y-3">
