@@ -12,15 +12,15 @@ const Index = () => {
   const [showPricing, setShowPricing] = useState(false);
 
   const phonePrices = [
-    { code: '+880', country: 'Бангладеш', price: '165₽', flag: '🇧🇩', url: 'https://t.me/zxcvuier' },
-    { code: '+1', country: 'США/Канада', price: '100₽', flag: '🇺🇸', url: 'https://t.me/zxcvuier' },
-    { code: '+57', country: 'Колумбия', price: '105₽', flag: '🇨🇴', url: 'https://t.me/zxcvuier' },
     { code: '+63', country: 'Филиппины', price: '60₽', flag: '🇵🇭', url: 'https://t.me/zxcvuier' },
     { code: '+254', country: 'Кения', price: '60₽', flag: '🇰🇪', url: 'https://t.me/zxcvuier' },
-    { code: '+777', country: 'Казахстан', price: '200₽', flag: '🇰🇿', url: 'https://t.me/zxcvuier' },
-    { code: '+55', country: 'Бразилия', price: '150₽', flag: '🇧🇷', url: 'https://t.me/zxcvuier' },
-    { code: '+33', country: 'Франция', price: '450₽', flag: '🇫🇷', url: 'https://t.me/zxcvuier' },
+    { code: '+1', country: 'США/Канада', price: '100₽', flag: '🇺🇸', url: 'https://t.me/zxcvuier' },
+    { code: '+57', country: 'Колумбия', price: '105₽', flag: '🇨🇴', url: 'https://t.me/zxcvuier' },
     { code: '+44', country: 'Великобритания', price: '145₽', flag: '🇬🇧', url: 'https://t.me/zxcvuier' },
+    { code: '+55', country: 'Бразилия', price: '150₽', flag: '🇧🇷', url: 'https://t.me/zxcvuier' },
+    { code: '+880', country: 'Бангладеш', price: '165₽', flag: '🇧🇩', url: 'https://t.me/zxcvuier' },
+    { code: '+777', country: 'Казахстан', price: '200₽', flag: '🇰🇿', url: 'https://t.me/zxcvuier' },
+    { code: '+33', country: 'Франция', price: '450₽', flag: '🇫🇷', url: 'https://t.me/zxcvuier' },
   ];
 
   const starsPrices = [
