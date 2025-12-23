@@ -17,6 +17,7 @@ const Index = () => {
     { code: '+880', country: 'Бангладеш', price: '165₽', flag: '🇧🇩' },
     { code: '+777', country: 'Казахстан', price: '200₽', flag: '🇰🇿' },
     { code: '+33', country: 'Франция', price: '450₽', flag: '🇫🇷' },
+    { code: '+61', country: 'Австралия', price: '500₽', flag: '🇦🇺' },
   ];
 
   const starsPrices = [
