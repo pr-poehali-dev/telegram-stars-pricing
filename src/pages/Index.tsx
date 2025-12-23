@@ -25,7 +25,7 @@ const Index = () => {
     { amount: '100', price: '160₽', icon: '⭐', popular: true, url: 'https://t.me/zxcvuier' },
     { amount: '150', price: '235₽', icon: '⭐', url: 'https://t.me/zxcvuier' },
     { amount: '250', price: '390₽', icon: '⭐', url: 'https://t.me/zxcvuier' },
-    { amount: '350', price: '350₽', icon: '⭐', url: 'https://t.me/zxcvuier' },
+    { amount: '350', price: '580₽', icon: '⭐', url: 'https://t.me/zxcvuier' },
     { amount: '500', price: '780₽', icon: '⭐', popular: true, url: 'https://t.me/zxcvuier' },
   ];
 
