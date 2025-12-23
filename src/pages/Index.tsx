@@ -197,23 +197,37 @@ const Index = () => {
                         {starsPrices.map((item, index) => (
                           <div 
                             key={index}
-                            className={`flex items-center justify-between p-3 rounded-lg border transition-all cursor-pointer ${
+                            className={`p-3 rounded-lg border transition-all ${
                               item.popular 
-                                ? 'border-primary bg-primary/10 hover:bg-primary/15' 
-                                : 'border-border/50 hover:border-primary/50 bg-card/50 hover:bg-primary/5'
+                                ? 'border-primary bg-primary/10' 
+                                : 'border-border/50 bg-card/50'
                             }`}
-                            onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
                           >
-                            <div className="flex items-center gap-2">
-                              <span className="text-2xl">{item.icon}</span>
-                              <p className="font-semibold">{item.amount} звёзд</p>
+                            <div className="flex items-center justify-between mb-2">
+                              <div className="flex items-center gap-2">
+                                <span className="text-2xl">{item.icon}</span>
+                                <p className="font-semibold">{item.amount} звёзд</p>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <p className="text-xl font-bold text-primary">{item.price}</p>
+                                {item.popular && (
+                                  <Badge className="bg-accent text-white text-xs">Хит</Badge>
+                                )}
+                              </div>
                             </div>
-                            <div className="flex items-center gap-2">
-                              <p className="text-xl font-bold text-primary">{item.price}</p>
-                              {item.popular && (
-                                <Badge className="bg-accent text-white text-xs">Хит</Badge>
-                              )}
-                            </div>
+                            <Button 
+                              size="sm" 
+                              className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-xs"
+                              onClick={() => {
+                                window.open('https://www.tinkoff.ru/rm/r_zXjHiwuRWv.pFzEvXqslY/SOLg19362', '_blank');
+                                setTimeout(() => {
+                                  window.open('https://t.me/zxcvuier', '_blank');
+                                }, 2000);
+                              }}
+                            >
+                              <Icon name="CreditCard" size={14} className="mr-1" />
+                              Оплатить
+                            </Button>
                           </div>
                         ))}
                       </div>
@@ -226,17 +240,31 @@ const Index = () => {
                         {phonePrices.map((item, index) => (
                           <div 
                             key={index}
-                            className="flex items-center justify-between p-3 rounded-lg border border-border/50 hover:border-primary/50 transition-all bg-card/50 hover:bg-primary/5 cursor-pointer"
-                            onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
+                            className="p-3 rounded-lg border border-border/50 transition-all bg-card/50"
                           >
-                            <div className="flex items-center gap-2">
-                              <span className="text-2xl">{item.flag}</span>
-                              <div>
-                                <p className="font-semibold">{item.code}</p>
-                                <p className="text-xs text-muted-foreground">{item.country}</p>
+                            <div className="flex items-center justify-between mb-2">
+                              <div className="flex items-center gap-2">
+                                <span className="text-2xl">{item.flag}</span>
+                                <div>
+                                  <p className="font-semibold">{item.code}</p>
+                                  <p className="text-xs text-muted-foreground">{item.country}</p>
+                                </div>
                               </div>
+                              <p className="text-xl font-bold text-primary">{item.price}</p>
                             </div>
-                            <p className="text-xl font-bold text-primary">{item.price}</p>
+                            <Button 
+                              size="sm" 
+                              className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-xs"
+                              onClick={() => {
+                                window.open('https://www.tinkoff.ru/rm/r_zXjHiwuRWv.pFzEvXqslY/SOLg19362', '_blank');
+                                setTimeout(() => {
+                                  window.open('https://t.me/zxcvuier', '_blank');
+                                }, 2000);
+                              }}
+                            >
+                              <Icon name="CreditCard" size={14} className="mr-1" />
+                              Оплатить
+                            </Button>
                           </div>
                         ))}
                       </div>
@@ -299,25 +327,34 @@ const Index = () => {
                   {starsPrices.map((item, index) => (
                     <div 
                       key={index}
-                      className={`flex items-center justify-between p-3 rounded-lg border transition-all ${
+                      className={`p-3 rounded-lg border transition-all ${
                         item.popular 
                           ? 'border-primary bg-primary/10' 
                           : 'border-border/50 bg-card/50'
                       }`}
                     >
-                      <div className="flex items-center gap-2">
-                        <span className="text-2xl">{item.icon}</span>
-                        <p className="font-semibold">{item.amount} звёзд</p>
-                        {item.popular && (
-                          <Badge className="bg-accent text-white text-xs">Хит</Badge>
-                        )}
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-2">
+                          <span className="text-2xl">{item.icon}</span>
+                          <p className="font-semibold">{item.amount} звёзд</p>
+                          {item.popular && (
+                            <Badge className="bg-accent text-white text-xs">Хит</Badge>
+                          )}
+                        </div>
+                        <p className="text-lg font-bold text-primary">{item.price}</p>
                       </div>
                       <Button 
                         size="sm"
-                        className="bg-gradient-to-r from-primary to-accent"
-                        onClick={() => window.open(item.url, '_blank')}
+                        className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700"
+                        onClick={() => {
+                          window.open('https://www.tinkoff.ru/rm/r_zXjHiwuRWv.pFzEvXqslY/SOLg19362', '_blank');
+                          setTimeout(() => {
+                            window.open('https://t.me/zxcvuier', '_blank');
+                          }, 2000);
+                        }}
                       >
-                        {item.price}
+                        <Icon name="CreditCard" size={14} className="mr-1" />
+                        Оплатить
                       </Button>
                     </div>
                   ))}
@@ -336,21 +373,30 @@ const Index = () => {
                   {phonePrices.map((item, index) => (
                     <div 
                       key={index}
-                      className="flex items-center justify-between p-3 rounded-lg border border-border/50 bg-card/50"
+                      className="p-3 rounded-lg border border-border/50 bg-card/50"
                     >
-                      <div className="flex items-center gap-2">
-                        <span className="text-2xl">{item.flag}</span>
-                        <div>
-                          <p className="font-semibold">{item.code}</p>
-                          <p className="text-xs text-muted-foreground">{item.country}</p>
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-2">
+                          <span className="text-2xl">{item.flag}</span>
+                          <div>
+                            <p className="font-semibold">{item.code}</p>
+                            <p className="text-xs text-muted-foreground">{item.country}</p>
+                          </div>
                         </div>
+                        <p className="text-lg font-bold text-primary">{item.price}</p>
                       </div>
                       <Button 
                         size="sm"
-                        className="bg-gradient-to-r from-secondary to-primary"
-                        onClick={() => window.open(item.url, '_blank')}
+                        className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700"
+                        onClick={() => {
+                          window.open('https://www.tinkoff.ru/rm/r_zXjHiwuRWv.pFzEvXqslY/SOLg19362', '_blank');
+                          setTimeout(() => {
+                            window.open('https://t.me/zxcvuier', '_blank');
+                          }, 2000);
+                        }}
                       >
-                        {item.price}
+                        <Icon name="CreditCard" size={14} className="mr-1" />
+                        Оплатить
                       </Button>
                     </div>
                   ))}
