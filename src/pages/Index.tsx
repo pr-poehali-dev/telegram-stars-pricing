@@ -116,17 +116,6 @@ const Index = () => {
                             <Badge className="bg-purple-500 text-white text-xs">Топ</Badge>
                           </div>
                         </div>
-                        <Button 
-                          size="sm" 
-                          className="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-xs"
-                          onClick={() => {
-                            navigator.clipboard.writeText('2200702071522895');
-                            window.open('https://t.me/zxcvuier', '_blank');
-                          }}
-                        >
-                          <Icon name="CreditCard" size={14} className="mr-1" />
-                          Оплатить (копировать карту)
-                        </Button>
                       </div>
 
                       <div className="mt-3 p-5 rounded-lg border-2 border-orange-500/50 bg-gradient-to-br from-orange-500/10 to-red-500/10">
@@ -174,17 +163,6 @@ const Index = () => {
                             </div>
                           </div>
                         </div>
-                        <Button 
-                          size="sm" 
-                          className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-sm font-semibold"
-                          onClick={() => {
-                            navigator.clipboard.writeText('2200702071522895');
-                            window.open('https://t.me/zxcvuier', '_blank');
-                          }}
-                        >
-                          <Icon name="ShoppingCart" size={16} className="mr-2" />
-                          Купить FunPayCardinal
-                        </Button>
                         <p className="text-xs text-center text-muted-foreground mt-2">После оплаты получишь инструкцию по настройке бота</p>
                       </div>
                     </div>
@@ -215,19 +193,6 @@ const Index = () => {
                               )}
                             </div>
                           </div>
-                          <Button 
-                            size="sm" 
-                            className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-xs"
-                            onClick={() => {
-                              window.open('https://www.tinkoff.ru/rm/r_zXjHiwuRWv.pFzEvXqslY/SOLg19362', '_blank');
-                              setTimeout(() => {
-                                window.open('https://t.me/zxcvuier', '_blank');
-                              }, 2000);
-                            }}
-                          >
-                            <Icon name="CreditCard" size={14} className="mr-1" />
-                            Оплатить
-                          </Button>
                         </div>
                       ))}
                     </div>
@@ -253,19 +218,6 @@ const Index = () => {
                             </div>
                             <p className="text-xl font-bold text-primary">{item.price}</p>
                           </div>
-                          <Button 
-                            size="sm" 
-                            className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-xs"
-                            onClick={() => {
-                              window.open('https://www.tinkoff.ru/rm/r_zXjHiwuRWv.pFzEvXqslY/SOLg19362', '_blank');
-                              setTimeout(() => {
-                                window.open('https://t.me/zxcvuier', '_blank');
-                              }, 2000);
-                            }}
-                          >
-                            <Icon name="CreditCard" size={14} className="mr-1" />
-                            Оплатить
-                          </Button>
                         </div>
                       ))}
                       </div>
@@ -273,6 +225,21 @@ const Index = () => {
                   </div>
 
                   <div className="pt-4 border-t border-border/30">
+                    <div className="bg-card/50 p-4 rounded-lg border border-primary/30 mb-3">
+                      <p className="text-sm text-muted-foreground text-center mb-2">Номер карты для оплаты:</p>
+                      <div className="flex items-center justify-center gap-2">
+                        <p className="text-2xl font-bold text-primary font-mono">2200 7020 7152 2895</p>
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          onClick={() => {
+                            navigator.clipboard.writeText('2200702071522895');
+                          }}
+                        >
+                          <Icon name="Copy" size={16} />
+                        </Button>
+                      </div>
+                    </div>
                     <Button 
                       className="w-full bg-gradient-to-r from-primary to-secondary"
                       onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
