@@ -8,17 +8,15 @@ const Index = () => {
   const [showAllServices, setShowAllServices] = useState(false);
   const [showSupportDialog, setShowSupportDialog] = useState(false);
 
-  const phonePrices = [
-    { code: '+63', country: 'Филиппины', price: '60₽', flag: '🇵🇭' },
-    { code: '+254', country: 'Кения', price: '60₽', flag: '🇰🇪' },
-    { code: '+1', country: 'США/Канада', price: '100₽', flag: '🇺🇸' },
-    { code: '+57', country: 'Колумбия', price: '105₽', flag: '🇨🇴' },
-    { code: '+44', country: 'Великобритания', price: '145₽', flag: '🇬🇧' },
-    { code: '+55', country: 'Бразилия', price: '150₽', flag: '🇧🇷' },
-    { code: '+880', country: 'Бангладеш', price: '165₽', flag: '🇧🇩' },
-    { code: '+777', country: 'Казахстан', price: '200₽', flag: '🇰🇿' },
-    { code: '+33', country: 'Франция', price: '450₽', flag: '🇫🇷' },
-    { code: '+61', country: 'Австралия', price: '500₽', flag: '🇦🇺' },
+  const robuxPrices = [
+    { amount: '200', price: '155₽', icon: '🎮' },
+    { amount: '300', price: '220₽', icon: '🎮' },
+    { amount: '400', price: '280₽', icon: '🎮', popular: true },
+    { amount: '500', price: '370₽', icon: '🎮' },
+    { amount: '800', price: '530₽', icon: '🎮', popular: true },
+    { amount: '1000', price: '650₽', icon: '🎮' },
+    { amount: '1500', price: '960₽', icon: '🎮' },
+    { amount: '2500', price: '1570₽', icon: '🎮' },
   ];
 
   const starsPrices = [
@@ -236,24 +234,30 @@ const Index = () => {
 
                     <div className="space-y-3 md:col-span-2">
                       <h3 className="font-semibold text-lg flex items-center gap-2">
-                        <Icon name="Phone" className="text-secondary" size={20} />
-                        Номера для регистрации
+                        <Icon name="Gamepad2" className="text-green-500" size={20} />
+                        Пополнение робуксов в Roblox
                       </h3>
                       <div className="grid md:grid-cols-2 gap-3">
-                      {phonePrices.map((item, index) => (
+                      {robuxPrices.map((item, index) => (
                         <div 
                           key={index}
-                          className="p-3 rounded-lg border border-border/50 transition-all bg-card/50"
+                          className={`p-3 rounded-lg border transition-all ${
+                            item.popular 
+                              ? 'border-green-500 bg-green-500/10' 
+                              : 'border-border/50 bg-card/50'
+                          }`}
                         >
                           <div className="flex items-center justify-between mb-2">
                             <div className="flex items-center gap-2">
-                              <span className="text-2xl">{item.flag}</span>
-                              <div>
-                                <p className="font-semibold">{item.code}</p>
-                                <p className="text-xs text-muted-foreground">{item.country}</p>
-                              </div>
+                              <span className="text-2xl">{item.icon}</span>
+                              <p className="font-semibold">{item.amount} робуксов</p>
                             </div>
-                            <p className="text-xl font-bold text-primary">{item.price}</p>
+                            <div className="flex items-center gap-2">
+                              <p className="text-xl font-bold text-green-400">{item.price}</p>
+                              {item.popular && (
+                                <Badge className="bg-green-500 text-white text-xs">Популярно</Badge>
+                              )}
+                            </div>
                           </div>
                         </div>
                       ))}
