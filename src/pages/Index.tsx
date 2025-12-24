@@ -438,7 +438,7 @@ Steam и даже Заработать на FunPay.</Badge>
                 <h3 className="font-semibold mb-3">Услуги</h3>
                 <div className="space-y-2 text-sm text-muted-foreground">
                   <p>⭐ Звёзды Telegram</p>
-                  <p>📱 Номера для регистрации</p>
+                  <p>🎮 Пополнение игр в Steam</p>
                   <p>🚀 Быстрая доставка</p>
                 </div>
               </div>
