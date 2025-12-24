@@ -431,6 +431,15 @@ Steam и даже Заработать на FunPay.</Badge>
                     <Icon name="Send" size={16} />
                     <span>@Dlimono</span>
                   </a>
+                  <a 
+                    href="https://t.me/+yfEfV4e4JVU5OGNi" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                  >
+                    <Icon name="Radio" size={16} />
+                    <span>@zxcvuier1</span>
+                  </a>
                 </div>
               </div>
               
