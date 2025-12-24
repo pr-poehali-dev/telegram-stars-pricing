@@ -81,7 +81,7 @@ const Index = () => {
                 </span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Покупай звёзды Telegram, эксклюзивные номера и продвигай свой бизнес. 
+                Покупай звёзды Telegram, пополняй аккаунты в играх и продвигай свой бизнес. 
                 Быстро, безопасно, выгодно.
               </p>
             </div>
@@ -232,7 +232,7 @@ const Index = () => {
                       ))}
                     </div>
 
-                    <div className="space-y-3 md:col-span-2">
+                    <div className="space-y-3">
                       <h3 className="font-semibold text-lg flex items-center gap-2">
                         <Icon name="Gamepad2" className="text-green-500" size={20} />
                         Пополнение робуксов в Roblox
@@ -261,6 +261,43 @@ const Index = () => {
                           </div>
                         </div>
                       ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <h3 className="font-semibold text-lg flex items-center gap-2">
+                        <Icon name="Steam" className="text-blue-400" size={20} />
+                        Пополнение Steam
+                      </h3>
+                      <div className="p-4 rounded-lg border border-blue-500/50 bg-blue-500/10">
+                        <div className="flex items-center gap-3 mb-3">
+                          <span className="text-3xl">🎮</span>
+                          <div>
+                            <p className="font-bold text-lg">Пополнение аккаунта Steam</p>
+                            <p className="text-xs text-muted-foreground">Любая сумма</p>
+                          </div>
+                        </div>
+                        <div className="space-y-2 text-sm bg-card/50 p-3 rounded border border-border/30">
+                          <p className="font-semibold text-blue-400 mb-2">📋 Инструкция:</p>
+                          <div className="space-y-1.5">
+                            <div className="flex items-start gap-2">
+                              <span className="text-blue-400 font-bold mt-0.5">1.</span>
+                              <p>Напишите в поддержку @zxcvuier и уточните цену для нужной суммы</p>
+                            </div>
+                            <div className="flex items-start gap-2">
+                              <span className="text-blue-400 font-bold mt-0.5">2.</span>
+                              <p>Оплатите указанную сумму по реквизитам ниже</p>
+                            </div>
+                            <div className="flex items-start gap-2">
+                              <span className="text-blue-400 font-bold mt-0.5">3.</span>
+                              <p>Отправьте скриншот оплаты и данные аккаунта Steam</p>
+                            </div>
+                            <div className="flex items-start gap-2">
+                              <span className="text-blue-400 font-bold mt-0.5">4.</span>
+                              <p>Ожидайте пополнения — обычно занимает до 30 минут</p>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
