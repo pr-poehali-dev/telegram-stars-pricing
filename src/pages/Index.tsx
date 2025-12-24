@@ -340,12 +340,12 @@ const Index = () => {
                     <Button 
                       className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-lg py-6"
                       onClick={() => {
-                        window.open('https://t.me/Dimonolimono', '_blank');
+                        window.open('https://t.me/Dlimono', '_blank');
                         setShowSupportDialog(false);
                       }}
                     >
                       <Icon name="Send" className="mr-2" />
-                      @Dimonolimono
+                      @Dlimono
                     </Button>
                   </div>
                 </DialogContent>
