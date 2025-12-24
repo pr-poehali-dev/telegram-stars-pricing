@@ -382,13 +382,13 @@ const Index = () => {
                     <span>@zxcvuier</span>
                   </a>
                   <a 
-                    href="https://t.me/Dimonolimono" 
+                    href="https://t.me/Dlimono" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors cursor-pointer"
                   >
                     <Icon name="Send" size={16} />
-                    <span>@Dimonolimono</span>
+                    <span>@Dlimono</span>
                   </a>
                 </div>
               </div>
