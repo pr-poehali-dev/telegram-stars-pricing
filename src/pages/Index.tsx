@@ -71,8 +71,8 @@ const Index = () => {
         <section className="py-20 md:py-32 px-4">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center space-y-6 animate-fade-in">
-              <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-2 text-sm">Сайт для звезд номеров и для
-твоего зароботка</Badge>
+              <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-2 text-sm">Сайт для пополнение игр телеграмма
+Steam и даже Заработать на FunPay.</Badge>
               <h1 className="text-5xl md:text-7xl font-bold leading-tight">
                 Зарабатывай на
                 <br />
