@@ -325,11 +325,25 @@ const Index = () => {
               
               <div>
                 <h3 className="font-semibold mb-3">Контакты</h3>
-                <div className="space-y-2 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
+                <div className="space-y-2 text-sm">
+                  <a 
+                    href="https://t.me/zxcvuier" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                  >
                     <Icon name="Send" size={16} />
                     <span>@zxcvuier</span>
-                  </div>
+                  </a>
+                  <a 
+                    href="https://t.me/Dimonolimono" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                  >
+                    <Icon name="Send" size={16} />
+                    <span>@Dimonolimono</span>
+                  </a>
                 </div>
               </div>
               
