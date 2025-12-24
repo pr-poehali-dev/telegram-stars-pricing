@@ -93,7 +93,7 @@ const Index = () => {
                     Наши услуги
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="bg-card border-border/50 max-w-4xl max-h-[90vh] overflow-y-auto">
+                <DialogContent className="bg-card border-border/50 max-w-7xl max-h-[90vh] overflow-y-auto">
                   <DialogHeader>
                     <DialogTitle className="text-3xl">Все наши услуги</DialogTitle>
                     <DialogDescription>
