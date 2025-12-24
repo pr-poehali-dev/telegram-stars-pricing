@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 
 const Index = () => {
   const [showAllServices, setShowAllServices] = useState(false);
+  const [showSupportDialog, setShowSupportDialog] = useState(false);
 
   const phonePrices = [
     { code: '+63', country: 'Филиппины', price: '60₽', flag: '🇵🇭' },
@@ -304,6 +305,51 @@ const Index = () => {
                 <Icon name="Star" className="mr-2" />
                 Отзывы
               </Button>
+              
+              <Dialog open={showSupportDialog} onOpenChange={setShowSupportDialog}>
+                <DialogTrigger asChild>
+                  <Button 
+                    size="lg" 
+                    variant="outline" 
+                    className="border-2 text-lg px-8 py-6 hover:scale-105 transition-transform border-green-500/50 text-green-400 hover:bg-green-500/10"
+                  >
+                    <Icon name="Headphones" className="mr-2" />
+                    Поддержка
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="bg-card border-border/50 max-w-md">
+                  <DialogHeader>
+                    <DialogTitle className="text-2xl">Связаться с поддержкой</DialogTitle>
+                    <DialogDescription>
+                      Выберите удобный контакт для связи
+                    </DialogDescription>
+                  </DialogHeader>
+                  
+                  <div className="space-y-3 pt-4">
+                    <Button 
+                      className="w-full bg-gradient-to-r from-primary to-secondary text-lg py-6"
+                      onClick={() => {
+                        window.open('https://t.me/zxcvuier', '_blank');
+                        setShowSupportDialog(false);
+                      }}
+                    >
+                      <Icon name="Send" className="mr-2" />
+                      @zxcvuier
+                    </Button>
+                    
+                    <Button 
+                      className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-lg py-6"
+                      onClick={() => {
+                        window.open('https://t.me/Dimonolimono', '_blank');
+                        setShowSupportDialog(false);
+                      }}
+                    >
+                      <Icon name="Send" className="mr-2" />
+                      @Dimonolimono
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </section>
