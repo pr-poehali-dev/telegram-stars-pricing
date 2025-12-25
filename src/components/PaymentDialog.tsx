@@ -5,6 +5,8 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
 import { useState } from 'react';
+import { PaymentButton } from '@/components/extensions/robokassa/PaymentButton';
+import { toast } from '@/components/ui/use-toast';
 
 interface PaymentDialogProps {
   open: boolean;
@@ -22,6 +24,15 @@ export function PaymentDialog({ open, onOpenChange, service, amount }: PaymentDi
   });
   const [showSuccess, setShowSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [useOnlinePayment, setUseOnlinePayment] = useState(false);
+
+  const amountInRubles = parseFloat(amount.replace(/[^0-9.]/g, ''));
+  const cartItem = {
+    id: 'service-1',
+    name: service,
+    price: amountInRubles,
+    quantity: 1
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -177,14 +188,71 @@ export function PaymentDialog({ open, onOpenChange, service, amount }: PaymentDi
           <div className="p-3 rounded-lg bg-primary/10 border border-primary/20">
             <p className="text-sm font-semibold mb-1">К оплате: {amount}</p>
             <p className="text-xs text-muted-foreground">
-              После оформления вы получите реквизиты для перевода
+              Выберите способ оплаты ниже
             </p>
           </div>
 
-          <Button type="submit" disabled={isLoading} className="w-full h-12 text-base">
-            <Icon name="ShoppingCart" className="mr-2" size={18} />
-            {isLoading ? 'Отправка...' : 'Оформить заказ'}
-          </Button>
+          <div className="space-y-3">
+            <div className="p-3 rounded-lg border border-border/50 bg-muted/30">
+              <p className="text-sm font-semibold mb-2">Способ оплаты:</p>
+              <div className="flex gap-2">
+                <Button
+                  type="button"
+                  variant={!useOnlinePayment ? 'default' : 'outline'}
+                  onClick={() => setUseOnlinePayment(false)}
+                  className="flex-1"
+                >
+                  <Icon name="CreditCard" className="mr-2" size={16} />
+                  На карту
+                </Button>
+                <Button
+                  type="button"
+                  variant={useOnlinePayment ? 'default' : 'outline'}
+                  onClick={() => setUseOnlinePayment(true)}
+                  className="flex-1"
+                >
+                  <Icon name="Wallet" className="mr-2" size={16} />
+                  Онлайн
+                </Button>
+              </div>
+            </div>
+
+            {!useOnlinePayment ? (
+              <Button type="submit" disabled={isLoading} className="w-full h-12 text-base">
+                <Icon name="ShoppingCart" className="mr-2" size={18} />
+                {isLoading ? 'Отправка...' : 'Оформить заказ'}
+              </Button>
+            ) : (
+              <PaymentButton
+                apiUrl="https://functions.poehali.dev/01fe90c6-39d3-44b8-a504-a60805022703"
+                amount={amountInRubles}
+                userName={formData.name}
+                userEmail={formData.email || 'noemail@example.com'}
+                userPhone={formData.telegram}
+                orderComment={formData.comment || service}
+                cartItems={[cartItem]}
+                successUrl={window.location.origin}
+                failUrl={window.location.origin}
+                onSuccess={(orderNumber) => {
+                  toast({
+                    title: 'Оплата успешна!',
+                    description: `Заказ ${orderNumber} оплачен`,
+                  });
+                  onOpenChange(false);
+                }}
+                onError={(error) => {
+                  toast({
+                    title: 'Ошибка оплаты',
+                    description: error.message,
+                    variant: 'destructive',
+                  });
+                }}
+                buttonText="Оплатить онлайн"
+                className="w-full h-12 text-base bg-primary hover:bg-primary/90 text-primary-foreground rounded-md font-medium transition-colors"
+                disabled={!formData.name || !formData.telegram}
+              />
+            )}
+          </div>
 
           <div className="pt-2 border-t border-border/50">
             <div className="flex items-start gap-2 text-sm text-muted-foreground">
