@@ -313,7 +313,7 @@ Steam и даже Заработать на FunPay.</Badge>
                         <Icon name="Steam" className="text-blue-400" size={20} />
                         Пополнение Steam
                       </h3>
-                      <div className="p-4 rounded-lg border border-blue-500/50 bg-blue-500/10">
+                      <div className="p-4 border border-blue-500/50 bg-blue-500/10 py-[1px] my-0 mx-0 rounded-xl">
                         <div className="flex items-center gap-3 mb-3">
                           <span className="text-3xl">🎮</span>
                           <div>
