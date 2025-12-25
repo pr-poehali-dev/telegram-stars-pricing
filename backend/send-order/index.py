@@ -69,12 +69,24 @@ def handler(event: dict, context) -> dict:
 
 ⏰ Ожидает оплаты на карту"""
         
+        telegram_username = telegram.lstrip('@') if telegram.startswith('@') else None
+        
+        inline_keyboard = []
+        if telegram_username:
+            inline_keyboard.append([{
+                'text': '💬 Написать клиенту',
+                'url': f'https://t.me/{telegram_username}'
+            }])
+        
         url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
         data = {
             'chat_id': chat_id,
             'text': message,
             'parse_mode': 'HTML'
         }
+        
+        if inline_keyboard:
+            data['reply_markup'] = {'inline_keyboard': inline_keyboard}
         
         req = urllib.request.Request(
             url,
