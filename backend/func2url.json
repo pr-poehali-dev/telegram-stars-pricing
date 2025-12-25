@@ -1,7 +1,5 @@
 {
-  "orders": "https://functions.poehali.dev/1ff12676-cf47-41ed-a8c6-49204bf51084",
-  "robokassa-webhook": "https://functions.poehali.dev/dce00720-a4fe-4962-afd6-0c383228afc6",
-  "create-payment": "https://functions.poehali.dev/391a25b0-3130-47b9-8dfb-03bf8ccedb87",
+  "send-order": "https://functions.poehali.dev/02a146e8-449c-4a53-951c-a3c94b3e6e4d",
   "robokassa-robokassa-webhook": "https://functions.poehali.dev/0a9488e3-fcc8-4189-b5b7-0bb7fb1cc795",
   "robokassa-robokassa": "https://functions.poehali.dev/a159c6e6-129f-4171-8428-62ed000fc484"
 }

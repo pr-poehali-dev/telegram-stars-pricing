@@ -21,10 +21,36 @@ export function PaymentDialog({ open, onOpenChange, service, amount }: PaymentDi
     comment: ''
   });
   const [showSuccess, setShowSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setShowSuccess(true);
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('https://functions.poehali.dev/02a146e8-449c-4a53-951c-a3c94b3e6e4d', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          telegram: formData.telegram,
+          email: formData.email || 'Не указано',
+          service: service,
+          amount: amount,
+          comment: formData.comment || 'Нет комментариев'
+        })
+      });
+
+      await response.json();
+      setShowSuccess(true);
+    } catch (error) {
+      console.error('Error sending notification:', error);
+      setShowSuccess(true);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const copyCardNumber = () => {
@@ -155,9 +181,9 @@ export function PaymentDialog({ open, onOpenChange, service, amount }: PaymentDi
             </p>
           </div>
 
-          <Button type="submit" className="w-full h-12 text-base">
+          <Button type="submit" disabled={isLoading} className="w-full h-12 text-base">
             <Icon name="ShoppingCart" className="mr-2" size={18} />
-            Оформить заказ
+            {isLoading ? 'Отправка...' : 'Оформить заказ'}
           </Button>
 
           <div className="pt-2 border-t border-border/50">
