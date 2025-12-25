@@ -20,7 +20,7 @@ export function PaymentDialog({ open, onOpenChange, service, amount }: PaymentDi
     setError(null);
 
     try {
-      const response = await fetch('https://functions.poehali.dev/a159c6e6-129f-4171-8428-62ed000fc484', {
+      const response = await fetch('https://functions.poehali.dev/391a25b0-3130-47b9-8dfb-03bf8ccedb87', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
