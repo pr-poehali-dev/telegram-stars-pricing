@@ -22,32 +22,73 @@ export function PaymentDialog({ open, onOpenChange, service, amount }: PaymentDi
   });
   const [showSuccess, setShowSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState<'card' | 'online'>('card');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://functions.poehali.dev/02a146e8-449c-4a53-951c-a3c94b3e6e4d', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          telegram: formData.telegram,
-          email: formData.email || 'Не указано',
-          service: service,
-          amount: amount,
-          comment: formData.comment || 'Нет комментариев'
-        })
-      });
+      if (paymentMethod === 'online') {
+        const amountInRubles = parseFloat(amount.replace(/[^0-9.]/g, ''));
+        
+        const paymentResponse = await fetch('https://functions.poehali.dev/68ac8e52-e750-4e84-b397-b4b64a6a3fee', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            amount: amountInRubles,
+            description: `${service} - ${formData.name}`,
+            customerName: formData.name,
+            customerEmail: formData.email
+          })
+        });
 
-      await response.json();
-      setShowSuccess(true);
+        const paymentData = await paymentResponse.json();
+
+        if (paymentData.success && paymentData.paymentUrl) {
+          await fetch('https://functions.poehali.dev/02a146e8-449c-4a53-951c-a3c94b3e6e4d', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: formData.name,
+              telegram: formData.telegram,
+              email: formData.email || 'Не указано',
+              service: service,
+              amount: amount,
+              comment: formData.comment || 'Нет комментариев'
+            })
+          });
+
+          window.location.href = paymentData.paymentUrl;
+          return;
+        } else {
+          console.error('Payment creation failed:', paymentData);
+          alert('Ошибка создания платежа. Попробуйте позже или выберите оплату на карту.');
+        }
+      } else {
+        const response = await fetch('https://functions.poehali.dev/02a146e8-449c-4a53-951c-a3c94b3e6e4d', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: formData.name,
+            telegram: formData.telegram,
+            email: formData.email || 'Не указано',
+            service: service,
+            amount: amount,
+            comment: formData.comment || 'Нет комментариев'
+          })
+        });
+
+        await response.json();
+        setShowSuccess(true);
+      }
     } catch (error) {
-      console.error('Error sending notification:', error);
-      setShowSuccess(true);
+      console.error('Error:', error);
+      if (paymentMethod === 'card') {
+        setShowSuccess(true);
+      } else {
+        alert('Ошибка. Попробуйте позже или выберите оплату на карту.');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -177,20 +218,48 @@ export function PaymentDialog({ open, onOpenChange, service, amount }: PaymentDi
           <div className="p-3 rounded-lg bg-primary/10 border border-primary/20">
             <p className="text-sm font-semibold mb-1">К оплате: {amount}</p>
             <p className="text-xs text-muted-foreground">
-              После оформления вы получите реквизиты для перевода
+              Выберите способ оплаты ниже
             </p>
           </div>
 
-          <Button type="submit" disabled={isLoading} className="w-full h-12 text-base">
-            <Icon name="ShoppingCart" className="mr-2" size={18} />
-            {isLoading ? 'Отправка...' : 'Оформить заказ'}
-          </Button>
+          <div className="space-y-3">
+            <div className="p-3 rounded-lg border border-border/50 bg-muted/30">
+              <p className="text-sm font-semibold mb-2">Способ оплаты:</p>
+              <div className="flex gap-2">
+                <Button
+                  type="button"
+                  variant={paymentMethod === 'card' ? 'default' : 'outline'}
+                  onClick={() => setPaymentMethod('card')}
+                  className="flex-1"
+                >
+                  <Icon name="CreditCard" className="mr-2" size={16} />
+                  На карту
+                </Button>
+                <Button
+                  type="button"
+                  variant={paymentMethod === 'online' ? 'default' : 'outline'}
+                  onClick={() => setPaymentMethod('online')}
+                  className="flex-1"
+                >
+                  <Icon name="Wallet" className="mr-2" size={16} />
+                  Онлайн
+                </Button>
+              </div>
+            </div>
+
+            <Button type="submit" disabled={isLoading} className="w-full h-12 text-base">
+              <Icon name="ShoppingCart" className="mr-2" size={18} />
+              {isLoading ? 'Отправка...' : (paymentMethod === 'online' ? 'Перейти к оплате' : 'Оформить заказ')}
+            </Button>
+          </div>
 
           <div className="pt-2 border-t border-border/50">
             <div className="flex items-start gap-2 text-sm text-muted-foreground">
               <Icon name="Info" size={16} className="mt-0.5 flex-shrink-0" />
               <p>
-                После оформления мы пришлём вам реквизиты карты для оплаты. Как только оплатите — свяжемся с вами в Telegram.
+                {paymentMethod === 'card' 
+                  ? 'После оформления мы пришлём вам реквизиты карты для оплаты. Как только оплатите — свяжемся с вами в Telegram.'
+                  : 'Вы будете перенаправлены на защищённую страницу оплаты Ckassa для безопасной оплаты картой.'}
               </p>
             </div>
           </div>
