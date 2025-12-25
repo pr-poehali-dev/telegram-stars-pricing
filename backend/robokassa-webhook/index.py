@@ -58,13 +58,8 @@ def handler(event: dict, context) -> dict:
         cursor = conn.cursor()
         
         cursor.execute(
-            "UPDATE orders SET status = %s, updated_at = CURRENT_TIMESTAMP WHERE order_number = %s",
-            ('paid', inv_id)
-        )
-        
-        cursor.execute(
-            "UPDATE payments SET status = %s, robokassa_inv_id = %s, updated_at = CURRENT_TIMESTAMP WHERE order_id = (SELECT id FROM orders WHERE order_number = %s)",
-            ('paid', inv_id, inv_id)
+            "UPDATE orders SET payment_status = 'paid', paid_at = CURRENT_TIMESTAMP WHERE id = %s",
+            (inv_id,)
         )
         
         conn.commit()
