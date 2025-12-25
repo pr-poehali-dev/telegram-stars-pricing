@@ -3,10 +3,16 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { PaymentDialog } from '@/components/PaymentDialog';
 
 const Index = () => {
   const [showAllServices, setShowAllServices] = useState(false);
   const [showSupportDialog, setShowSupportDialog] = useState(false);
+  const [paymentDialog, setPaymentDialog] = useState<{open: boolean; service: string; amount: string}>({
+    open: false,
+    service: '',
+    amount: ''
+  });
 
   const robuxPrices = [
     { amount: '200', price: '155₽', icon: '🎮' },
@@ -121,6 +127,13 @@ Steam и даже Заработать на FunPay.</Badge>
                             <Badge className="bg-purple-500 text-white text-xs">Топ</Badge>
                           </div>
                         </div>
+                        <Button 
+                          onClick={() => setPaymentDialog({open: true, service: 'Приватный ТГК', amount: '299₽'})}
+                          className="w-full mt-3 bg-purple-500 hover:bg-purple-600"
+                        >
+                          <Icon name="CreditCard" className="mr-2" size={16} />
+                          Оплатить
+                        </Button>
                       </div>
 
                       <div className="mt-3 p-5 rounded-lg border-2 border-orange-500/50 bg-gradient-to-br from-orange-500/10 to-red-500/10">
@@ -169,6 +182,13 @@ Steam и даже Заработать на FunPay.</Badge>
                           </div>
                         </div>
                         <p className="text-xs text-center text-muted-foreground mt-2">После оплаты получишь инструкцию по настройке бота</p>
+                        <Button 
+                          onClick={() => setPaymentDialog({open: true, service: 'FunPayCardinal — бот', amount: '549₽'})}
+                          className="w-full mt-3 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600"
+                        >
+                          <Icon name="CreditCard" className="mr-2" size={16} />
+                          Оплатить
+                        </Button>
                       </div>
                     </div>
 
@@ -198,6 +218,14 @@ Steam и даже Заработать на FunPay.</Badge>
                               )}
                             </div>
                           </div>
+                          <Button 
+                            onClick={() => setPaymentDialog({open: true, service: `Звёзды Telegram (${item.amount})`, amount: item.price})}
+                            size="sm"
+                            className="w-full mt-2"
+                          >
+                            <Icon name="CreditCard" className="mr-2" size={14} />
+                            Оплатить
+                          </Button>
                         </div>
                       ))}
                     </div>
@@ -228,6 +256,14 @@ Steam и даже Заработать на FunPay.</Badge>
                               )}
                             </div>
                           </div>
+                          <Button 
+                            onClick={() => setPaymentDialog({open: true, service: `Telegram Premium (${item.duration})`, amount: item.price})}
+                            size="sm"
+                            className="w-full mt-2"
+                          >
+                            <Icon name="CreditCard" className="mr-2" size={14} />
+                            Оплатить
+                          </Button>
                         </div>
                       ))}
                     </div>
@@ -259,6 +295,14 @@ Steam и даже Заработать на FunPay.</Badge>
                               )}
                             </div>
                           </div>
+                          <Button 
+                            onClick={() => setPaymentDialog({open: true, service: `Робуксы (${item.amount})`, amount: item.price})}
+                            size="sm"
+                            className="w-full mt-2"
+                          >
+                            <Icon name="CreditCard" className="mr-2" size={14} />
+                            Оплатить
+                          </Button>
                         </div>
                       ))}
                       </div>
@@ -459,6 +503,13 @@ Steam и даже Заработать на FunPay.</Badge>
           </div>
         </footer>
       </div>
+
+      <PaymentDialog 
+        open={paymentDialog.open}
+        onOpenChange={(open) => setPaymentDialog({...paymentDialog, open})}
+        service={paymentDialog.service}
+        amount={paymentDialog.amount}
+      />
     </div>
   );
 };
