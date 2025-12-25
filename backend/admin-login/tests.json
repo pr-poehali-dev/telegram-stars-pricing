@@ -1,0 +1,30 @@
+{
+  "tests": [
+    {
+      "name": "Test valid admin login",
+      "method": "POST",
+      "body": {
+        "username": "zxcvuier5",
+        "password": "$2b$10$8yZqH.XH5jV4D.KxZ5Q5Qe5X5X5X5X5X5X5X5X5X5X5X5X5X5X5Xa"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Test invalid credentials",
+      "method": "POST",
+      "body": {
+        "username": "wronguser",
+        "password": "wrongpass"
+      },
+      "expectedStatus": 401,
+      "expectedBody": {
+        "success": false
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
