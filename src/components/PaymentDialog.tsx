@@ -5,6 +5,9 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
 import { useState } from 'react';
+import { PaymentButton } from '@/components/extensions/robokassa/PaymentButton';
+import type { CartItem } from '@/components/extensions/robokassa/useRobokassa';
+import func2url from '../../backend/func2url.json';
 
 interface PaymentDialogProps {
   open: boolean;
@@ -22,7 +25,7 @@ export function PaymentDialog({ open, onOpenChange, service, amount }: PaymentDi
   });
   const [showSuccess, setShowSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState<'card' | 'online'>('card');
+  const [paymentMethod, setPaymentMethod] = useState<'card' | 'online' | 'robokassa'>('card');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -225,15 +228,24 @@ export function PaymentDialog({ open, onOpenChange, service, amount }: PaymentDi
           <div className="space-y-3">
             <div className="p-3 rounded-lg border border-border/50 bg-muted/30">
               <p className="text-sm font-semibold mb-2">Способ оплаты:</p>
-              <div className="flex gap-2">
+              <div className="grid grid-cols-3 gap-2">
                 <Button
                   type="button"
                   variant={paymentMethod === 'card' ? 'default' : 'outline'}
                   onClick={() => setPaymentMethod('card')}
                   className="flex-1"
                 >
-                  <Icon name="CreditCard" className="mr-2" size={16} />
-                  На карту
+                  <Icon name="CreditCard" className="mr-1" size={14} />
+                  Карта
+                </Button>
+                <Button
+                  type="button"
+                  variant={paymentMethod === 'robokassa' ? 'default' : 'outline'}
+                  onClick={() => setPaymentMethod('robokassa')}
+                  className="flex-1"
+                >
+                  <Icon name="Wallet" className="mr-1" size={14} />
+                  Robokassa
                 </Button>
                 <Button
                   type="button"
@@ -241,16 +253,45 @@ export function PaymentDialog({ open, onOpenChange, service, amount }: PaymentDi
                   onClick={() => setPaymentMethod('online')}
                   className="flex-1"
                 >
-                  <Icon name="Wallet" className="mr-2" size={16} />
-                  Онлайн
+                  <Icon name="CreditCard" className="mr-1" size={14} />
+                  Ckassa
                 </Button>
               </div>
             </div>
 
-            <Button type="submit" disabled={isLoading} className="w-full h-12 text-base">
-              <Icon name="ShoppingCart" className="mr-2" size={18} />
-              {isLoading ? 'Отправка...' : (paymentMethod === 'online' ? 'Перейти к оплате' : 'Оформить заказ')}
-            </Button>
+            {paymentMethod === 'robokassa' ? (
+              <PaymentButton
+                apiUrl={func2url['robokassa-robokassa']}
+                amount={parseFloat(amount.replace(/[^0-9.]/g, ''))}
+                userName={formData.name}
+                userEmail={formData.email || 'noreply@example.com'}
+                userPhone={formData.telegram}
+                orderComment={`${service} - ${formData.comment || 'Нет комментариев'}`}
+                cartItems={[{
+                  id: '1',
+                  name: service,
+                  price: parseFloat(amount.replace(/[^0-9.]/g, '')),
+                  quantity: 1
+                } as CartItem]}
+                successUrl={window.location.origin + '/success'}
+                failUrl={window.location.origin}
+                onSuccess={(orderNumber) => {
+                  console.log('Payment success:', orderNumber);
+                }}
+                onError={(error) => {
+                  console.error('Payment error:', error);
+                  alert('Ошибка оплаты');
+                }}
+                buttonText="Перейти к оплате"
+                className="w-full h-12 text-base bg-primary text-primary-foreground hover:bg-primary/90 rounded-md font-medium"
+                disabled={!formData.name || !formData.telegram}
+              />
+            ) : (
+              <Button type="submit" disabled={isLoading} className="w-full h-12 text-base">
+                <Icon name="ShoppingCart" className="mr-2" size={18} />
+                {isLoading ? 'Отправка...' : (paymentMethod === 'online' ? 'Перейти к оплате' : 'Оформить заказ')}
+              </Button>
+            )}
           </div>
 
           <div className="pt-2 border-t border-border/50">
@@ -259,6 +300,8 @@ export function PaymentDialog({ open, onOpenChange, service, amount }: PaymentDi
               <p>
                 {paymentMethod === 'card' 
                   ? 'После оформления мы пришлём вам реквизиты карты для оплаты. Как только оплатите — свяжемся с вами в Telegram.'
+                  : paymentMethod === 'robokassa'
+                  ? 'Вы будете перенаправлены на защищённую страницу оплаты Robokassa. Принимаются все способы оплаты.'
                   : 'Вы будете перенаправлены на защищённую страницу оплаты Ckassa для безопасной оплаты картой.'}
               </p>
             </div>
