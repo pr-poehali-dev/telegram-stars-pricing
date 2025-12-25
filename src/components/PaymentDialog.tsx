@@ -1,6 +1,7 @@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import { useState } from 'react';
 
 interface PaymentDialogProps {
   open: boolean;
@@ -10,17 +11,46 @@ interface PaymentDialogProps {
 }
 
 export function PaymentDialog({ open, onOpenChange, service, amount }: PaymentDialogProps) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const priceNumber = parseInt(amount.replace(/[^0-9]/g, ''));
-  const cardNumber = '2200702071522895';
-  const sbpPhone = '+79000000000';
 
-  const handleCardPayment = () => {
-    navigator.clipboard.writeText(cardNumber);
-    window.open(`https://t.me/zxcvuier`, '_blank');
-  };
+  const handlePayment = async () => {
+    setIsLoading(true);
+    setError(null);
 
-  const handleSBPPayment = () => {
-    window.open(`https://t.me/zxcvuier`, '_blank');
+    try {
+      const response = await fetch('https://functions.poehali.dev/a159c6e6-129f-4171-8428-62ed000fc484', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          amount: priceNumber,
+          user_name: 'Клиент',
+          user_email: 'customer@example.com',
+          user_phone: '',
+          cart_items: [{
+            id: '1',
+            name: service,
+            price: priceNumber,
+            quantity: 1
+          }],
+          order_comment: service
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Ошибка создания платежа');
+      }
+
+      window.location.href = data.payment_url;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Ошибка соединения с сервером');
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -39,30 +69,28 @@ export function PaymentDialog({ open, onOpenChange, service, amount }: PaymentDi
             <p className="text-3xl font-bold text-primary">{amount}</p>
           </div>
 
+          {error && (
+            <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/50 text-red-500 text-sm">
+              <div className="flex items-center gap-2">
+                <Icon name="AlertCircle" size={16} />
+                <p>{error}</p>
+              </div>
+            </div>
+          )}
+
           <div className="space-y-3">
             <Button 
-              onClick={handleSBPPayment}
-              className="w-full h-auto py-4 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 flex items-center justify-between"
+              onClick={handlePayment}
+              disabled={isLoading}
+              className="w-full h-auto py-4 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 flex items-center justify-between disabled:opacity-50"
             >
               <div className="flex items-center gap-3">
                 <Icon name="Smartphone" size={24} />
                 <div className="text-left">
-                  <p className="font-bold text-base">Оплатить через СБП</p>
-                  <p className="text-xs opacity-90">Быстрый платёж по номеру телефона</p>
-                </div>
-              </div>
-              <Icon name="ChevronRight" size={20} />
-            </Button>
-
-            <Button 
-              onClick={handleCardPayment}
-              className="w-full h-auto py-4 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 flex items-center justify-between"
-            >
-              <div className="flex items-center gap-3">
-                <Icon name="CreditCard" size={24} />
-                <div className="text-left">
-                  <p className="font-bold text-base">Перевод на карту Сбербанка</p>
-                  <p className="text-xs opacity-90">Номер карты скопируется автоматически</p>
+                  <p className="font-bold text-base">
+                    {isLoading ? 'Загрузка...' : 'Оплатить через СБП и карты'}
+                  </p>
+                  <p className="text-xs opacity-90">Переход на защищённую страницу оплаты</p>
                 </div>
               </div>
               <Icon name="ChevronRight" size={20} />
@@ -71,9 +99,9 @@ export function PaymentDialog({ open, onOpenChange, service, amount }: PaymentDi
 
           <div className="pt-4 border-t border-border/50">
             <div className="flex items-start gap-2 text-sm text-muted-foreground">
-              <Icon name="Info" size={16} className="mt-0.5 flex-shrink-0" />
+              <Icon name="Shield" size={16} className="mt-0.5 flex-shrink-0" />
               <p>
-                После оплаты напишите в Telegram <a href="https://t.me/zxcvuier" className="text-primary hover:underline" target="_blank">@zxcvuier</a> с подтверждением платежа
+                Безопасная оплата через Robokassa. Доступны СБП, банковские карты и другие способы.
               </p>
             </div>
           </div>
