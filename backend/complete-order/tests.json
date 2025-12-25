@@ -1,0 +1,33 @@
+{
+  "tests": [
+    {
+      "name": "Handle OPTIONS request",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Handle callback query",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "callback_query": {
+          "id": "test123",
+          "data": "complete_abc123",
+          "message": {
+            "chat": {
+              "id": 123456
+            },
+            "message_id": 789,
+            "text": "Test order message\n⏰ Ожидает оплаты на карту"
+          }
+        }
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "ok": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

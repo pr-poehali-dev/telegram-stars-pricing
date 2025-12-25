@@ -2,6 +2,8 @@ import json
 import os
 import urllib.request
 import urllib.parse
+import uuid
+import psycopg2
 
 def handler(event: dict, context) -> dict:
     """Отправка уведомления о новом заказе в Telegram"""
@@ -41,6 +43,23 @@ def handler(event: dict, context) -> dict:
         amount = body.get('amount', 'Не указано')
         comment = body.get('comment', 'Нет комментариев')
         
+        order_id = str(uuid.uuid4())[:8]
+        
+        database_url = os.environ.get('DATABASE_URL')
+        if database_url:
+            try:
+                conn = psycopg2.connect(database_url)
+                cur = conn.cursor()
+                cur.execute(
+                    "INSERT INTO simple_orders (order_id, customer_name, customer_telegram, customer_email, service_name, amount, comment, status) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+                    (order_id, name, telegram, email, service, amount, comment, 'pending')
+                )
+                conn.commit()
+                cur.close()
+                conn.close()
+            except Exception as db_error:
+                print(f'Database error: {db_error}')
+        
         bot_token = os.environ.get('TELEGRAM_BOT_TOKEN')
         chat_id = os.environ.get('TELEGRAM_CHAT_ID')
         
@@ -55,7 +74,7 @@ def handler(event: dict, context) -> dict:
                 'isBase64Encoded': False
             }
         
-        message = f"""🔔 <b>Новый заказ!</b>
+        message = f"""🔔 <b>Новый заказ #{order_id}</b>
 
 📦 <b>Услуга:</b> {service}
 💰 <b>Сумма:</b> {amount}
@@ -77,6 +96,11 @@ def handler(event: dict, context) -> dict:
                 'text': '💬 Написать клиенту',
                 'url': f'https://t.me/{telegram_username}'
             }])
+        
+        inline_keyboard.append([{
+            'text': '✅ Заказ выполнен',
+            'callback_data': f'complete_{order_id}'
+        }])
         
         url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
         data = {
