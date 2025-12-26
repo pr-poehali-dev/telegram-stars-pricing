@@ -20,7 +20,7 @@ const Index = () => {
     { amount: '400', price: '280₽', icon: '🎮', popular: true },
     { amount: '500', price: '370₽', icon: '🎮' },
     { amount: '800', price: '530₽', icon: '🎮', popular: true },
-    { amount: '1000', price: '650₽', icon: '🎮' },
+    { amount: '1000', price: '680₽', icon: '🎮' },
     { amount: '1500', price: '960₽', icon: '🎮' },
     { amount: '2500', price: '1570₽', icon: '🎮' },
   ];
