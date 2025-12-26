@@ -43,8 +43,9 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/10 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.1),transparent_50%)] pointer-events-none" />
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,0,128,0.15),transparent_40%),radial-gradient(circle_at_70%_80%,rgba(0,255,255,0.15),transparent_40%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(255,0,128,0.05)_50%,transparent_100%)] pointer-events-none animate-pulse" />
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-10 left-10 w-20 h-20 text-blue-200/30 text-4xl">❄️</div>
         <div className="absolute top-32 right-20 w-16 h-16 text-blue-200/20 text-3xl">⛄</div>
@@ -61,12 +62,12 @@ const Index = () => {
               <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
                 <Icon name="Sparkles" className="text-white" size={24} />
               </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <span className="text-2xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-neon-pulse">
                 zxcvuier
               </span>
             </div>
             <Button 
-              className="bg-gradient-to-r from-primary to-secondary hover:opacity-90"
+              className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 shadow-[0_0_15px_rgba(255,0,128,0.5)] hover:shadow-[0_0_25px_rgba(255,0,128,0.8)] transition-all"
               onClick={() => window.open('https://t.me/zxcvuier', '_blank')}
             >
               Связаться
@@ -77,12 +78,12 @@ const Index = () => {
         <section className="py-20 md:py-32 px-4">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center space-y-6 animate-fade-in">
-              <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-2 text-sm">Сайт для пополнение игр телеграмма
+              <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-2 text-sm shadow-[0_0_10px_rgba(255,0,128,0.3)]">Сайт для пополнение игр телеграмма
 Steam и даже Заработать на FunPay.</Badge>
               <h1 className="text-5xl md:text-7xl font-bold leading-tight">
                 Зарабатывай на
                 <br />
-                <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-glow">
+                <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-neon-pulse">
                   FunPay
                 </span>
               </h1>
@@ -94,7 +95,7 @@ Steam и даже Заработать на FunPay.</Badge>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
               <Dialog open={showAllServices} onOpenChange={setShowAllServices}>
                 <DialogTrigger asChild>
-                  <Button size="lg" className="bg-gradient-to-r from-primary to-secondary text-lg px-8 py-6 hover:scale-105 transition-transform">
+                  <Button size="lg" className="bg-gradient-to-r from-primary to-secondary text-lg px-8 py-6 hover:scale-105 transition-all shadow-[0_0_20px_rgba(255,0,128,0.6)] hover:shadow-[0_0_35px_rgba(255,0,128,0.9)]">
                     <Icon name="ShoppingBag" className="mr-2" />
                     Наши услуги
                   </Button>
@@ -202,8 +203,8 @@ Steam и даже Заработать на FunPay.</Badge>
                           key={index}
                           className={`p-3 rounded-lg border transition-all ${
                             item.popular 
-                              ? 'border-primary bg-primary/10' 
-                              : 'border-border/50 bg-card/50'
+                              ? 'border-primary bg-primary/10 shadow-[0_0_15px_rgba(255,0,128,0.4)] hover:shadow-[0_0_25px_rgba(255,0,128,0.6)]' 
+                              : 'border-border/50 bg-card/50 hover:shadow-[0_0_10px_rgba(255,0,128,0.2)]'
                           }`}
                         >
                           <div className="flex items-center justify-between mb-2">
@@ -240,8 +241,8 @@ Steam и даже Заработать на FunPay.</Badge>
                           key={index}
                           className={`p-3 rounded-lg border transition-all ${
                             item.popular 
-                              ? 'border-blue-500 bg-blue-500/10' 
-                              : 'border-border/50 bg-card/50'
+                              ? 'border-blue-500 bg-blue-500/10 shadow-[0_0_15px_rgba(0,191,255,0.4)] hover:shadow-[0_0_25px_rgba(0,191,255,0.6)]' 
+                              : 'border-border/50 bg-card/50 hover:shadow-[0_0_10px_rgba(0,191,255,0.2)]'
                           }`}
                         >
                           <div className="flex items-center justify-between mb-2">
@@ -279,8 +280,8 @@ Steam и даже Заработать на FunPay.</Badge>
                           key={index}
                           className={`p-3 rounded-lg border transition-all ${
                             item.popular 
-                              ? 'border-green-500 bg-green-500/10' 
-                              : 'border-border/50 bg-card/50'
+                              ? 'border-green-500 bg-green-500/10 shadow-[0_0_15px_rgba(0,255,128,0.4)] hover:shadow-[0_0_25px_rgba(0,255,128,0.6)]' 
+                              : 'border-border/50 bg-card/50 hover:shadow-[0_0_10px_rgba(0,255,128,0.2)]'
                           }`}
                         >
                           <div className="flex items-center justify-between mb-2">
