@@ -78,8 +78,7 @@ const Index = () => {
         <section className="py-20 md:py-32 px-4">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center space-y-6 animate-fade-in">
-              <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-2 text-sm shadow-[0_0_10px_rgba(255,0,128,0.3)]">Сайт для пополнение игр телеграмма
-Steam и даже Заработать на FunPay.</Badge>
+              <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-2 text-sm shadow-[0_0_10px_rgba(255,0,128,0.3)]">Тут вы найдете звезды,пополнение в Steam, и пополнение в Roblox</Badge>
               <h1 className="text-5xl md:text-7xl font-bold leading-tight text-purple-50">ZXCVUIER</h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                 Покупай звёзды Telegram, пополняй аккаунты в играх и продвигай свой бизнес. 
