@@ -42,6 +42,8 @@ def handler(event: dict, context) -> dict:
         service = body.get('service', 'Не указано')
         amount = body.get('amount', 'Не указано')
         comment = body.get('comment', 'Нет комментариев')
+        payment_method = body.get('payment_method', 'card')
+        yoomoney_url = body.get('yoomoney_url', '')
         
         order_id = str(uuid.uuid4())[:8]
         
@@ -86,7 +88,8 @@ def handler(event: dict, context) -> dict:
 💬 <b>Комментарий:</b>
 {comment}
 
-⏰ Ожидает оплаты на карту"""
+💳 <b>Способ оплаты:</b> {'ЮMoney' if payment_method == 'yoomoney' else 'На карту / СБП'}
+⏰ Ожидает оплаты"""
         
         telegram_username = telegram.lstrip('@') if telegram.startswith('@') else None
         
@@ -95,6 +98,12 @@ def handler(event: dict, context) -> dict:
             inline_keyboard.append([{
                 'text': '💬 Написать клиенту',
                 'url': f'https://t.me/{telegram_username}'
+            }])
+        
+        if yoomoney_url:
+            inline_keyboard.append([{
+                'text': '💸 Ссылка на оплату ЮMoney',
+                'url': yoomoney_url
             }])
         
         inline_keyboard.append([{

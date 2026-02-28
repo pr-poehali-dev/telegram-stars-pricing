@@ -22,6 +22,7 @@ export function PaymentDialog({ open, onOpenChange, service, amount }: PaymentDi
   });
   const [showSuccess, setShowSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [yoomoneyLoading, setYoomoneyLoading] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<'card' | 'yoomoney'>('card');
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -206,35 +207,37 @@ export function PaymentDialog({ open, onOpenChange, service, amount }: PaymentDi
             </div>
 
             {paymentMethod === 'yoomoney' ? (
-              <div className="space-y-3">
-                <div className="p-3 rounded-lg bg-blue-500/10 border border-blue-500/30 text-sm">
-                  <p className="font-semibold text-blue-400 mb-1">Номер кошелька ЮMoney:</p>
-                  <div className="flex items-center gap-2 bg-background p-2 rounded">
-                    <code className="font-mono flex-1 text-base">4100118960048082</code>
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => navigator.clipboard.writeText('4100118960048082')}
-                    >
-                      <Icon name="Copy" size={16} />
-                    </Button>
-                  </div>
-                  <p className="text-xs text-muted-foreground mt-2">Переведите ровно <strong>{amount}</strong> и укажите в комментарии свой Telegram</p>
-                </div>
-                <Button
-                  type="button"
-                  className="w-full h-12 text-base bg-blue-500 hover:bg-blue-600"
-                  onClick={() => {
-                    const numAmount = parseFloat(amount.replace(/[^0-9.]/g, ''));
-                    window.open(`https://yoomoney.ru/transfer/quickpay?receiver=4100118960048082&quickpay-form=button&sum=${numAmount}&comment=${encodeURIComponent(formData.telegram || service)}`, '_blank');
-                  }}
-                  disabled={!formData.name || !formData.telegram}
-                >
-                  <Icon name="Banknote" className="mr-2" size={18} />
-                  Оплатить через ЮMoney
-                </Button>
-              </div>
+              <Button
+                type="button"
+                className="w-full h-12 text-base bg-blue-500 hover:bg-blue-600"
+                disabled={!formData.name || !formData.telegram || yoomoneyLoading}
+                onClick={async () => {
+                  setYoomoneyLoading(true);
+                  const numAmount = parseFloat(amount.replace(/[^0-9.]/g, ''));
+                  const yooUrl = `https://yoomoney.ru/transfer/quickpay?receiver=4100118960048082&quickpay-form=button&sum=${numAmount}&comment=${encodeURIComponent(formData.telegram + ' — ' + service)}`;
+                  try {
+                    await fetch('https://functions.poehali.dev/02a146e8-449c-4a53-951c-a3c94b3e6e4d', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        name: formData.name,
+                        telegram: formData.telegram,
+                        email: formData.email || 'Не указано',
+                        service,
+                        amount,
+                        comment: formData.comment || 'Нет комментариев',
+                        payment_method: 'yoomoney',
+                        yoomoney_url: yooUrl
+                      })
+                    });
+                  } catch (err) { console.error(err); }
+                  setYoomoneyLoading(false);
+                  window.open(yooUrl, '_blank');
+                }}
+              >
+                <Icon name="Banknote" className="mr-2" size={18} />
+                {yoomoneyLoading ? 'Отправка...' : 'Оплатить через ЮMoney'}
+              </Button>
             ) : (
               <Button type="submit" disabled={isLoading} className="w-full h-12 text-base">
                 <Icon name="ShoppingCart" className="mr-2" size={18} />
