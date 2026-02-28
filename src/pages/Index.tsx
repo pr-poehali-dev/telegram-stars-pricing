@@ -80,13 +80,7 @@ const Index = () => {
             <div className="text-center space-y-6 animate-fade-in">
               <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-2 text-sm shadow-[0_0_10px_rgba(255,0,128,0.3)]">Сайт для пополнение игр телеграмма
 Steam и даже Заработать на FunPay.</Badge>
-              <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-                Зарабатывай на
-                <br />
-                <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-neon-pulse">
-                  FunPay
-                </span>
-              </h1>
+              <h1 className="text-5xl md:text-7xl font-bold leading-tight text-purple-50">ZXCVUIER</h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                 Покупай звёзды Telegram, пополняй аккаунты в играх и продвигай свой бизнес. 
                 Быстро, безопасно, выгодно.
