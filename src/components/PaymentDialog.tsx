@@ -214,7 +214,7 @@ export function PaymentDialog({ open, onOpenChange, service, amount }: PaymentDi
                 onClick={async () => {
                   setYoomoneyLoading(true);
                   const numAmount = parseFloat(amount.replace(/[^0-9.]/g, ''));
-                  const yooUrl = `https://yoomoney.ru/transfer/quickpay?receiver=4100118960048082&quickpay-form=button&sum=${numAmount}&comment=${encodeURIComponent(formData.telegram + ' — ' + service)}`;
+                  const yooUrl = `https://yoomoney.ru/quickpay/confirm.xml?receiver=4100118960048082&quickpay-form=button&targets=${encodeURIComponent(formData.telegram + ' — ' + service)}&sum=${numAmount}&label=${encodeURIComponent(formData.telegram)}`;
                   try {
                     await fetch('https://functions.poehali.dev/02a146e8-449c-4a53-951c-a3c94b3e6e4d', {
                       method: 'POST',
