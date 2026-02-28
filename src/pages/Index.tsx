@@ -80,10 +80,7 @@ const Index = () => {
             <div className="text-center space-y-6 animate-fade-in">
               <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-2 text-sm shadow-[0_0_10px_rgba(255,0,128,0.3)]">Тут вы найдете звезды,пополнение в Steam, и пополнение в Roblox</Badge>
               <h1 className="text-5xl md:text-7xl font-bold leading-tight text-purple-50">ZXCVUIER</h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Покупай звёзды Telegram, пополняй аккаунты в играх и продвигай свой бизнес. 
-                Быстро, безопасно, выгодно.
-              </p>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">Покупай звёзды Telegram, пополняй аккаунты в стим. Быстро, безопасно, выгодно.</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
               <Dialog open={showAllServices} onOpenChange={setShowAllServices}>
